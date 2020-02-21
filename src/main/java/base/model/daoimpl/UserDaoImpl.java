@@ -4,9 +4,11 @@ import base.model.dao.UserDao;
 import base.model.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+import java.util.List;
+
+@Repository
 public class UserDaoImpl implements UserDao {
 
     @Autowired
@@ -24,5 +26,11 @@ public class UserDaoImpl implements UserDao {
     public int insert(User user) {
         int result = (int) hibernateTemplate.save(user);
         return result;
+    }
+
+    @Override
+    public List<User> loadAll() {
+        return hibernateTemplate.loadAll(User.class);
+
     }
 }

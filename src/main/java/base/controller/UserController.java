@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     @Autowired
@@ -25,6 +27,13 @@ public class UserController {
     @RequestMapping("/req1")
     public String req1() {
         return "page1";
+    }
+
+    @RequestMapping("/loadAll")
+    public String loadAll(ModelMap modelMap) {
+        List<User> users = userService.loadAll();
+        modelMap.addAttribute("users", users);
+        return "page3";
     }
 
     @RequestMapping(value = "/req2", method = RequestMethod.POST)
