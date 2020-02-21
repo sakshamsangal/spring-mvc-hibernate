@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> loadAll() {
-        return userDao.loadAll();
+        List<User> users = userDao.loadAll();
+        Collections.sort(users);
+        return users;
     }
 }

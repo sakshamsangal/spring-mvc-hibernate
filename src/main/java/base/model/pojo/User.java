@@ -4,10 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class User implements Comparable<User>{
 
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private String email;
 
@@ -20,11 +20,12 @@ public class User {
                 '}';
     }
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,5 +43,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(User user) {
+        return this.name.compareTo(user.name);
     }
 }
