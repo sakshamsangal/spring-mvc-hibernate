@@ -5,9 +5,7 @@ import base.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +39,13 @@ public class UserController {
         int id = userService.insert(user);
         modelMap.addAttribute("id", id);
         return "page1";
+    }
+
+    @RequestMapping("/req4")
+    public @ResponseBody String req4(@RequestParam("id") int id) {
+        User user = userService.findUser(id);
+        String msg = "";
+        if(user != null) msg = "already exist";
+        return msg;
     }
 }

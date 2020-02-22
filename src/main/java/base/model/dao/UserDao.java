@@ -7,4 +7,5 @@ import java.util.List;
 public interface UserDao {
     int insert(User user);
     List<User> loadAll();
+    User findUser(Integer id);
 }
